@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		714FB8EF1F896C9F002FE949 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714FB8EE1F896C9F002FE949 /* Reachability.swift */; };
 		718065711F87ED3C00287C96 /* ConfirmAddPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718065701F87ED3C00287C96 /* ConfirmAddPinViewController.swift */; };
 		71824DD91F6DEE9E001599B8 /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71824DD81F6DEE9E001599B8 /* Pin.swift */; };
 		71824DDB1F6DFA1C001599B8 /* LoggedUserPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71824DDA1F6DFA1C001599B8 /* LoggedUserPin.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		714FB8EE1F896C9F002FE949 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		718065701F87ED3C00287C96 /* ConfirmAddPinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmAddPinViewController.swift; sourceTree = "<group>"; };
 		71824DD81F6DEE9E001599B8 /* Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
 		71824DDA1F6DFA1C001599B8 /* LoggedUserPin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedUserPin.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 		71872E011F6317DB0024D269 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				714FB8EE1F896C9F002FE949 /* Reachability.swift */,
 				71E4A9581F63197C005F8038 /* LaunchScreen.storyboard */,
 				71872DEE1F6317290024D269 /* Main.storyboard */,
 				71872DF11F6317290024D269 /* Assets.xcassets */,
@@ -245,6 +248,7 @@
 				71824DE31F71A911001599B8 /* MapViewController.swift in Sources */,
 				71872DEB1F6317290024D269 /* AppDelegate.swift in Sources */,
 				71824DD91F6DEE9E001599B8 /* Pin.swift in Sources */,
+				714FB8EF1F896C9F002FE949 /* Reachability.swift in Sources */,
 				71E4A9601F632557005F8038 /* LoginViewController.swift in Sources */,
 				718065711F87ED3C00287C96 /* ConfirmAddPinViewController.swift in Sources */,
 				71E4A9771F6341C3005F8038 /* Pins.swift in Sources */,

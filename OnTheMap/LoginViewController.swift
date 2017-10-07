@@ -53,7 +53,7 @@ class LoginViewController: UIViewController {
     
     //Testing offline mode
     usernameTextField.text = "mauriciocabreira@gmail.com"
-    passwordTextField.text = "x"
+    passwordTextField.text = "meal3las"
     
     if FBOTMClient.Constants.testing_offline {
       
@@ -68,18 +68,30 @@ class LoginViewController: UIViewController {
     } else {
       
       if usernameTextField.text!.isEmpty || passwordTextField.text!.isEmpty {
-        debugTextLabel.text = "Username or Password Empty."
-      } else {
-        setUIEnabled(false)
+        self.presentError("Username or password can´t be empty.")
         
-        FBOTMClient.sharedInstance().authenticateWithViewController(usernameTextField.text!, passwordTextField.text!, self) { (success, errorString) in
-          performUIUpdatesOnMain {
-            if success {
-              self.completeLogin()
-            } else {
-              self.displayError(errorString)
+        //debugTextLabel.text = "Username or Password Empty."
+      } else {
+        
+        if Reachability.isConnectedToNetwork() {
+          setUIEnabled(false)
+          
+          
+          
+          FBOTMClient.sharedInstance().authenticateWithViewController(usernameTextField.text!, passwordTextField.text!, self) { (success, errorString) in
+            performUIUpdatesOnMain {
+              if success {
+                self.completeLogin()
+              } else {
+                self.presentError("Username or password can´t be empty.")
+                
+                //self.displayError(errorString)
+              }
             }
           }
+        } else {
+          self.presentError("Internet connection not available.")
+          
         }
       }
       
@@ -141,6 +153,10 @@ private extension LoginViewController {
     backgroundGradient.locations = [0.0, 1.0]
     backgroundGradient.frame = view.frame
     view.layer.insertSublayer(backgroundGradient, at: 0)
+  }
+  
+  func presentError(_ message: String, _ title: String = "Error", _ actionTitle: String = "OK") {
+    self.present(FBOTMClient.sharedInstance().raiseError(message, title, actionTitle), animated: true, completion: nil)
   }
   
   //MARK: TEST DATA

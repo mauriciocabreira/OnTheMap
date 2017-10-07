@@ -28,7 +28,7 @@ extension FBOTMClient {
     static let AuthenticateURL = "https://www.udacity.com/api/session"
     static let SignUpPage = "https://www.udacity.com/account/auth#!/signup"
     
-    static let LimitNumber = 1
+    static let LimitNumber = 100
     static let DescUpdatedAt = "-updatedAt"
     static let AscUpdatedAt = "updatedAt"
     

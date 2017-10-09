@@ -12,7 +12,7 @@ import UIKit
 
 // MARK: - LoginViewController: UIViewController
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
   
   // MARK: Properties
   
@@ -35,6 +35,9 @@ class LoginViewController: UIViewController {
     configureBackground()
     loadingIndicator.hidesWhenStopped = true
     setUIEnabled(true)
+    self.passwordTextField.delegate = self
+    self.usernameTextField.delegate = self
+    
     
   }
   
@@ -43,6 +46,8 @@ class LoginViewController: UIViewController {
     loadingIndicator.stopAnimating()
     
   }
+  
+  
   
   // MARK: Actions
   
@@ -115,13 +120,19 @@ class LoginViewController: UIViewController {
       self.present(controller, animated: true, completion: nil)
     }
   }
+  
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    textField.resignFirstResponder()
+    return true
+  }
+  
 }
 
 // MARK: - LoginViewController (Configure UI)
 
 private extension LoginViewController {
   
-  
+ 
   func setUIEnabled(_ enabled: Bool) {
     loginButton.isEnabled = enabled
     debugTextLabel.isEnabled = enabled

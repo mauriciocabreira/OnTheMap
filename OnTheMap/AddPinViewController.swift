@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class AddPinViewController: UIViewController, UINavigationControllerDelegate {
+class AddPinViewController: UIViewController, UINavigationControllerDelegate, UITextFieldDelegate {
   
   // MARK: Properties
   @IBOutlet weak var navBar: UINavigationBar!
@@ -116,9 +116,47 @@ class AddPinViewController: UIViewController, UINavigationControllerDelegate {
     super.viewDidLoad()
     activityIndicator.hidesWhenStopped = true
     isLoading(false)
+    self.locationText.delegate = self
+    self.websiteText.delegate = self
+
     
   }
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    //subscribeToKeyboardNotifications()
+  }
+  override func viewWillDisappear(_ animated: Bool) {
+    
+    super.viewWillDisappear(animated)
+    //unsubscribeFromKeyboardNotifications()
+    
+  }
+  
+  
+  // MARK: Subscription functions
+  
+  //Keyboard notifications (un)subscription
+  /*
+  func subscribeToKeyboardNotifications() {
+    
+    //Keyboard will show subscription
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
+    
+    //Keyboard will hide subscription
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
+    
+  }
+  
+  func unsubscribeFromKeyboardNotifications() {
+    
+    //Keyboard will show unsubscription
+    NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
+    
+    //Keyboard will hide unsubscription
+    NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
+  }
+ */
   
   // MARK: Auxiliary functions
   
@@ -140,10 +178,22 @@ class AddPinViewController: UIViewController, UINavigationControllerDelegate {
   }
   
   
+  func keyboardWillShow(_ notification:Notification) {
+    
+    print("subscribe kb will show")
+ 
+  }
+  
+  func keyboardWillHide(_ notification:Notification) {
+    print("subscribe kb will hide")
+  }
+  
+
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     textField.resignFirstResponder()
     return true
   }
+  
   
   func presentError(_ message: String, _ title: String = "Error", _ actionTitle: String = "OK") {
     self.present(FBOTMClient.sharedInstance().raiseError(message, title, actionTitle), animated: true, completion: nil)
@@ -155,3 +205,9 @@ class AddPinViewController: UIViewController, UINavigationControllerDelegate {
   
   
 }
+
+
+
+
+
+

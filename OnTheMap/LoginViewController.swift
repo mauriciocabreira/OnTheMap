@@ -68,7 +68,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
       
       if usernameTextField.text!.isEmpty || passwordTextField.text!.isEmpty {
         presentError("Username or password can´t be empty.")
-        
       } else {
         
         if Reachability.isConnectedToNetwork() {
@@ -78,7 +77,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
               if success {
                 self.completeLogin()
               } else {
-                self.presentError("Username or password can´t be empty.")
+                self.presentError("Invalid credentials. Please try again")
               }
             }
           }

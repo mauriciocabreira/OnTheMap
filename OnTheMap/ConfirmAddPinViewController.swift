@@ -83,7 +83,7 @@ class ConfirmAddPinViewController: UIViewController, UINavigationControllerDeleg
   }
   
   func presentError(_ message: String, _ title: String = "Error", _ actionTitle: String = "OK") {
-    self.present(FBOTMClient.sharedInstance().raiseError(message, title, actionTitle), animated: true, completion: nil)
+    present(FBOTMClient.sharedInstance().raiseError(message, title, actionTitle), animated: true, completion: nil)
   }
   
 }

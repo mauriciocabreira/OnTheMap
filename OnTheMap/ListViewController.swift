@@ -38,7 +38,7 @@ class ListViewController: UITableViewController {
       invalidLinkAlert.addAction(overwriteAction)
       invalidLinkAlert.addAction(cancelAction)
       
-      self.present(invalidLinkAlert, animated: true, completion: nil)
+      present(invalidLinkAlert, animated: true, completion: nil)
     } else {
       let addPinViewController = self.storyboard!.instantiateViewController(withIdentifier: "AddPinViewController") as! AddPinViewController
       self.navigationController!.pushViewController(addPinViewController, animated: true)
@@ -73,7 +73,7 @@ class ListViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     activityIndicator.hidesWhenStopped = true
-    self.isLoading(false)
+    isLoading(false)
     
   }
   
@@ -177,7 +177,7 @@ class ListViewController: UITableViewController {
   }
   
   func presentError(_ message: String, _ title: String = "Error", _ actionTitle: String = "OK") {
-    self.present(FBOTMClient.sharedInstance().raiseError(message, title, actionTitle), animated: true, completion: nil)
+    present(FBOTMClient.sharedInstance().raiseError(message, title, actionTitle), animated: true, completion: nil)
   }
 }
 

@@ -49,7 +49,7 @@ class AddPinViewController: UIViewController, UINavigationControllerDelegate, UI
       confirmAddPinViewController.location = "miami"
       confirmAddPinViewController.website = "www.runs.site"
       
-      self.navigationController!.pushViewController(confirmAddPinViewController, animated: true)
+      navigationController!.pushViewController(confirmAddPinViewController, animated: true)
     } else {
       
       
@@ -116,51 +116,19 @@ class AddPinViewController: UIViewController, UINavigationControllerDelegate, UI
     super.viewDidLoad()
     activityIndicator.hidesWhenStopped = true
     isLoading(false)
-    self.locationText.delegate = self
-    self.websiteText.delegate = self
-
-    
+    locationText.delegate = self
+    websiteText.delegate = self
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    //subscribeToKeyboardNotifications()
   }
   override func viewWillDisappear(_ animated: Bool) {
-    
     super.viewWillDisappear(animated)
-    //unsubscribeFromKeyboardNotifications()
-    
   }
-  
-  
-  // MARK: Subscription functions
-  
-  //Keyboard notifications (un)subscription
-  /*
-  func subscribeToKeyboardNotifications() {
-    
-    //Keyboard will show subscription
-    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
-    
-    //Keyboard will hide subscription
-    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
-    
-  }
-  
-  func unsubscribeFromKeyboardNotifications() {
-    
-    //Keyboard will show unsubscription
-    NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
-    
-    //Keyboard will hide unsubscription
-    NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
-  }
- */
   
   // MARK: Auxiliary functions
-  
-  
+   
   func isLoading(_ loading : Bool) {
     if loading {
       activityIndicator.startAnimating()
@@ -178,17 +146,6 @@ class AddPinViewController: UIViewController, UINavigationControllerDelegate, UI
   }
   
   
-  func keyboardWillShow(_ notification:Notification) {
-    
-    print("subscribe kb will show")
- 
-  }
-  
-  func keyboardWillHide(_ notification:Notification) {
-    print("subscribe kb will hide")
-  }
-  
-
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     textField.resignFirstResponder()
     return true
@@ -196,7 +153,7 @@ class AddPinViewController: UIViewController, UINavigationControllerDelegate, UI
   
   
   func presentError(_ message: String, _ title: String = "Error", _ actionTitle: String = "OK") {
-    self.present(FBOTMClient.sharedInstance().raiseError(message, title, actionTitle), animated: true, completion: nil)
+    present(FBOTMClient.sharedInstance().raiseError(message, title, actionTitle), animated: true, completion: nil)
   }
   
   func websiteIsValid(_ website: String) -> Bool {

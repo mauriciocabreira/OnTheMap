@@ -35,8 +35,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     configureBackground()
     loadingIndicator.hidesWhenStopped = true
     setUIEnabled(true)
-    self.passwordTextField.delegate = self
-    self.usernameTextField.delegate = self
+    passwordTextField.delegate = self
+    usernameTextField.delegate = self
     
     
   }
@@ -54,12 +54,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
   @IBAction func loginPressed(_ sender: Any) {
     
     debugTextLabel.text = ""
-    
-    
-    //Testing offline mode
-    usernameTextField.text = "mauriciocabreira@gmail.com"
-    passwordTextField.text = "meal3las"
-    
     if FBOTMClient.Constants.testing_offline {
       
       //create fake pin data
@@ -68,37 +62,31 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
       Pins.sharedInstance.pins.append(contentsOf: parsedPins)
       
       //Login
-      self.completeLogin()
+      completeLogin()
       
     } else {
       
       if usernameTextField.text!.isEmpty || passwordTextField.text!.isEmpty {
-        self.presentError("Username or password can´t be empty.")
+        presentError("Username or password can´t be empty.")
         
-        //debugTextLabel.text = "Username or Password Empty."
       } else {
         
         if Reachability.isConnectedToNetwork() {
           setUIEnabled(false)
-          
-          
-          
           FBOTMClient.sharedInstance().authenticateWithViewController(usernameTextField.text!, passwordTextField.text!, self) { (success, errorString) in
             performUIUpdatesOnMain {
               if success {
                 self.completeLogin()
               } else {
                 self.presentError("Username or password can´t be empty.")
-                
-                //self.displayError(errorString)
               }
             }
           }
         } else {
-          self.presentError("Internet connection not available.")
-          
+          presentError("Internet connection not available.")
         }
-      }
+       }
+      setUIEnabled(true)
       
     }
   }
@@ -151,7 +139,7 @@ private extension LoginViewController {
   func displayError(_ errorString: String?) {
     if let errorString = errorString {
       debugTextLabel.text = errorString
-      self.setUIEnabled(true)
+      setUIEnabled(true)
       
     }
   }
@@ -167,7 +155,7 @@ private extension LoginViewController {
   }
   
   func presentError(_ message: String, _ title: String = "Error", _ actionTitle: String = "OK") {
-    self.present(FBOTMClient.sharedInstance().raiseError(message, title, actionTitle), animated: true, completion: nil)
+    present(FBOTMClient.sharedInstance().raiseError(message, title, actionTitle), animated: true, completion: nil)
   }
   
   //MARK: TEST DATA

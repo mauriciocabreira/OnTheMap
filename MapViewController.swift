@@ -86,10 +86,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
   private func updateMap() {
     
     isLoading(true)
-    
-    self.mapView.removeAnnotations(pinsAnnotations)
-    self.pinsAnnotations.removeAll()
-    
+    mapView.removeAnnotations(pinsAnnotations)
+    pinsAnnotations.removeAll()
     
     //Testing offline mode
     if FBOTMClient.Constants.testing_offline {
@@ -192,11 +190,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
       annotation.title = "\(pin.firstName!) \(pin.lastName!)"
       annotation.subtitle = pin.mediaURL!
       
-      self.pinsAnnotations.append(annotation)
+      pinsAnnotations.append(annotation)
     }
-    self.mapView.addAnnotations(self.pinsAnnotations)
+    mapView.addAnnotations(pinsAnnotations)
     
-    print("Number of Pins: \(self.pinsAnnotations.count)")
+    print("Number of Pins: \(pinsAnnotations.count)")
     
     
     completionHandlerForSetupAnnotations(true)
@@ -218,7 +216,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
   
   
   func presentError(_ message: String, _ title: String = "Error", _ actionTitle: String = "OK") {
-    self.present(FBOTMClient.sharedInstance().raiseError(message, title, actionTitle), animated: true, completion: nil)
+    present(FBOTMClient.sharedInstance().raiseError(message, title, actionTitle), animated: true, completion: nil)
   }
   
 }
